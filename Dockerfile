@@ -1,11 +1,11 @@
-# Use official Java 17 image
-FROM openjdk:17-jdk-slim
-
-# Set working directory
+# Step 1: Build the jar
+FROM maven:3.9.6-eclipse-temurin-17 AS builder
 WORKDIR /app
+COPY . .
+RUN mvn clean package -DskipTests
 
-# Copy the jar file to the container
-COPY target/*.jar app.jar
-
-# Run the Spring Boot app
+# Step 2: Run the jar
+FROM openjdk:17-jdk-slim
+WORKDIR /app
+COPY --from=builder /app/target/*.jar app.jar
 ENTRYPOINT ["java", "-jar", "app.jar"]
