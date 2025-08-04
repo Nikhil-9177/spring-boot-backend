@@ -9,27 +9,29 @@ import lombok.Data;
 public class Student {
 
     @Id
-    private Long idNo;
+    private String idNo;
     private String name;
     private int age;
     private String mobile;
+    private String bloodGroup;
 
     public Student() {}
 
-    public Student(Long idNo,int age, String mobile, String name) {
+    public Student(String idNo,int age, String mobile, String name,String bloodGroup) {
         this.idNo=idNo;
         this.age = age;
         this.mobile = mobile;
         this.name = name;
+        this.bloodGroup=bloodGroup;
     }
 
 
 
-    public Long getIdNo() {
+    public String getIdNo() {
         return idNo;
     }
 
-    public void setIdNo(Long idNo) {
+    public void setIdNo(String idNo) {
         this.idNo = idNo;
     }
 
@@ -55,5 +57,13 @@ public class Student {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getBloodGroup() {
+        return bloodGroup;
+    }
+
+    public void setBloodGroup(String bloodGroup) {
+        this.bloodGroup = bloodGroup;
     }
 }

@@ -31,15 +31,10 @@ public class StudentController {
     }
 
     @GetMapping("/id/{id}")
-    public Student getDetailsById(@PathVariable Long id) {
+    public Student getDetailsById(@PathVariable String id) {
         return studentService.getDetailsById(id);
     }
 
-    @GetMapping("/total")
-    public int getTotal()
-    {
-        return studentService.getTotal();
-    }
 
     @DeleteMapping
     public ResponseEntity<String> deleteUsers() {
@@ -48,14 +43,14 @@ public class StudentController {
     }
 
     @DeleteMapping("/{id}")
-    public String deleteByUserId(@PathVariable Long id)
+    public String deleteByUserId(@PathVariable String id)
     {
        return studentService.deleteByUserId(id);
 
     }
 
     @PutMapping("/{id}")
-    public String updateUser(@PathVariable Long id,@RequestBody Student student)
+    public String updateUser(@PathVariable String id,@RequestBody Student student)
     {
         return studentService.updateUser(id,student);
     }

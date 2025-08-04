@@ -7,14 +7,13 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.Optional;
 
-public interface StudentRepository extends JpaRepository<Student, Long> {
+public interface StudentRepository extends JpaRepository<Student, String> {
 
 
     @Query("select s from Student s where s.idNo=:id")
-    Optional<Student> findStudentOrNull(@Param("id") Long id);
+    Optional<Student> findStudentOrNull(@Param("id") String id);
 
-    @Query("select sum(s.age) from Student s")
-    Integer getTotalSum();
+
 
 
 

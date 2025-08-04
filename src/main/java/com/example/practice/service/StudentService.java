@@ -23,7 +23,7 @@ public class StudentService {
         return studentRepository.findAll();
     }
 
-    public Student getDetailsById(Long id) {
+    public Student getDetailsById(String id) {
       Optional<Student> student= studentRepository.findStudentOrNull(id);
       if(student.isPresent())
       {
@@ -34,17 +34,13 @@ public class StudentService {
       }
     }
 
-    public int getTotal() {
-        Integer total=studentRepository.getTotalSum();
-        return (total!=null)?total*total:0;
 
-    }
 
     public void deleteUsers() {
         studentRepository.deleteAll();
     }
 
-    public String deleteByUserId(Long id) {
+    public String deleteByUserId(String id) {
         if(studentRepository.existsById(id))
         {
             studentRepository.deleteById(id);
@@ -59,7 +55,7 @@ public class StudentService {
 
     }
 
-    public String updateUser(Long id,Student student) {
+    public String updateUser(String id,Student student) {
         Optional<Student> studentOptional=studentRepository.findById(id);
         if(studentOptional.isPresent())
         {
@@ -68,6 +64,7 @@ public class StudentService {
             update.setMobile(student.getMobile());
             update.setName(student.getName());
             update.setIdNo(student.getIdNo());
+            update.setBloodGroup(student.getBloodGroup());
             studentRepository.save(update);
             return "user update successfully";
         }
